@@ -1,0 +1,17 @@
+[
+  {
+    "route": "Sydney - Melbourne",
+    "price": 120,
+    "date": "2025-06-01"
+  },
+  {
+    "route": "Sydney - Brisbane",
+    "price": 90,
+    "date": "2025-06-02"
+  },
+  {
+    "route": "Sydney - Melbourne",
+    "price": 110,
+    "date": "2025-06-03"
+  }
+]

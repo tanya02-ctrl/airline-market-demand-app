@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Airline Market Demand</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h2>Average Price by Route</h2>
+
+  <!-- Dropdown Filter Form -->
+  <form method="GET" style="margin-bottom: 20px;">
+    <label for="route">Select Route:</label>
+    <select name="route" id="route" onchange="this.form.submit()">
+      <option value="">All Routes</option>
+      {% for route in all_routes %}
+        <option value="{{ route }}" {% if selected_route == route %}selected{% endif %}>{{ route }}</option>
+      {% endfor %}
+    </select>
+  </form>
+
+  <!-- Chart Canvas -->
+  <canvas id="priceChart" width="600" height="300"></canvas>
+
+  <script>
+    const insightsData = {{ insights|tojson|safe }};
+    const labels = Object.keys(insightsData);
+    const data = Object.values(insightsData);
+
+    const ctx = document.getElementById('priceChart');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Average Price ($)',
+          data: data,
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          },
+          title: {
+            display: true,
+            text: 'Airline Route Price Trends'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Price (USD)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Routes'
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
