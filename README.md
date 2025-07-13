@@ -1,5 +1,5 @@
 📦 Airline Market Demand Web App
-A Python + Flask web application that fetches, processes, and visualizes airline booking market demand data — built for PS Fin Solutions' intern evaluation task.
+A Python + Flask web application that fetches, processes, and visualizes airline booking market demand data .
 
 🚀 Features
 📊 Chart-based insights into average airline route prices
